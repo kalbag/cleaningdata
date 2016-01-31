@@ -1,17 +1,43 @@
-# Human Activity Recognition Using Smartphones Dataset
-## Version 1.0
-## Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
-## Smartlab - Non Linear Complex Systems Laboratory
-## DITEN - Università degli Studi di Genova.
-## Via Opera Pia 11A, I-16145, Genoa, Italy.
-## activityrecognition@smartlab.ws
-## www.smartlab.ws
+## How the run_analysis.R Script Works
+
+### Step 0
+The script run_analysis.R assumes all files are in the current working directory.
+It reads all files into tables as the initial step.
+
+### Step 1 
+It then combines the training and test data sets, using rbind, to create a table with all rows from both the training and test data sets.
+
+### Step 2
+It then builds a reduced set of columns by selecting only columns whose names contain mean or std (standard deviation) as requested.
+It does this by building a vector of column indices with the requested features, and then subsetting the data frame by those columns.
+
+### Step 3
+Next, it creates activity labels to name the activities in the data set.
+It merges the two tables containing the activity names and the activity numbers, using the numbers column.
+
+### Step 4
+Next it applies column names using descriptive feature names from the selected features.
+After this, it uses the transform function to add Activity and Subject columns to the reduced set.
+
+### Step 5
+It uses the dplyr and tidyr libraries to create a table from the data frame, use the group_by function
+to group the reduced column variables by Subject and Activity and then summarize_each to apply the mean to each group.
+Finally, it writes the summarized table out to a file called "output_tidyset.txt".
+
+## Human Activity Recognition Using Smartphones Dataset
+### Version 1.0
+### Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
+### Smartlab - Non Linear Complex Systems Laboratory
+### DITEN - Università degli Studi di Genova.
+### Via Opera Pia 11A, I-16145, Genoa, Italy.
+### activityrecognition@smartlab.ws
+### www.smartlab.ws
 
 The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
 
-## Each record provides the following:
+### Each record provides the following:
 
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
@@ -19,7 +45,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 - Its activity label. 
 - An identifier of the subject who carried out the experiment.
 
-## Feature Selection:
+### Feature Selection:
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
