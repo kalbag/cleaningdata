@@ -30,9 +30,8 @@ It then combines the training and test data sets, using rbind, to create a table
 
 ### Step 2
 It then builds a reduced set of columns by selecting only columns whose names represent a "mean" or "std" (standard deviation) as requested.
-It does not select columns such as (552) fBodyBodyGyroJerkMag-meanFreq() or (559) angle(X,gravityMean), where it is a bit ambiguous whether
-the observation is to be included or not.  It does this by building a vector of column indices with the requested features, and then 
-subsetting the data frame by those columns.
+It does not select columns such as (559) angle(X,gravityMean), where it is a bit ambiguous whether this observation represents a mean.
+It does this by building a vector of column indices with the requested features, and then subsetting the data frame by those columns.
 
 ### Step 3
 Next, it creates activity labels to name the activities in the data set.
